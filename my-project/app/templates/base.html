@@ -1,0 +1,40 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+        {% include 'includes/_messages.html' %}
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="/">Home</a></li>
+            <li role="presentation"><a href="/articles">Articles</a></li>
+            <li role="presentation"><a href="/about">About</a></li>
+            
+	    {% if session.logged_in %}
+            	<li role="presentation"><a href="/dashboard">Dashboard</a></li>
+            	<li role="presentation"><a href="/logout">Logout</a></li>
+	    {% else %}		
+	    	<li role="presentation"><a href="/register">Register</a></li>
+            	<li role="presentation"><a href="/login">Login</a></li>
+            {% endif %}
+	    <li role="presentation"><a href="http://flask.pocoo.org" target="_blank">More About Flask</a></li>
+          </ul>
+        </nav>
+      </div>
+      {% block body %}
+      {% endblock %}
+      <footer class="footer">
+        <p>© Your Name Here</p>
+      </footer>
+    </div> <!-- /container -->
+  </body>
+</html>
